@@ -39,8 +39,7 @@ server.get("/flowers", (req, res) => {
   db.all(sql, (err, rows) => {
     if (err) {
       res.status(500).send(err);
-    }
-    {
+    } else {
       res.send(rows);
     }
   });

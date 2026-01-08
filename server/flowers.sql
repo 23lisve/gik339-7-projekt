@@ -1,13 +1,17 @@
-DROP TABLE IF EXISTS flowers;
+
+
+
+DROP TABLE IF EXISTS flowers; --Tar bort 
 CREATE TABLE IF NOT EXISTS flowers(
-   id        INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT
-  ,name VARCHAR(8) NOT NULL
-  ,petalshape  VARCHAR(9) NOT NULL
-  ,width  VARCHAR(16) NOT NULL
-  ,color     VARCHAR(6) NOT NULL
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+
+  name VARCHAR(8) NOT NULL,
+  petalShape VARCHAR(9) NOT NULL,
+  width INTEGER NOT NULL,
+  color VARCHAR(6) NOT NULL,
 );
 
-INSERT INTO flowers(id,name,petalShape,width,color) VALUES (1,'Zena','Zulauf','Katlynn_Brekke','green');
+INSERT INTO flowers(id,name,petalShape,width,color) VALUES (1,'Dahlia','Runda','2','Pink');
 
 /*
 INSERT INTO users(id,firstName,lastName,username,color) VALUES (2,'Muhammad','Torphy','Martina39','gray');

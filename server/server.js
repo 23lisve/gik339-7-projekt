@@ -32,6 +32,20 @@ server.listen(3000, () => {
 });
 
 //hämtar alla
+server.get("/flowers", (req, res) => {
+  const sql = "SELECT * FROM flowers";
+  // errorhantering, callbackfunktion
+
+  db.all(sql, (err, rows) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.send(rows);
+    }
+  });
+});
+
+// hämtar en rad (med id)
 server.get("/flowers/:id", (req, res) => {
   const id = req.params.id;
 
@@ -42,7 +56,7 @@ server.get("/flowers/:id", (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.send(rows);
+      res.send(rows[0]);
     }
   });
 });

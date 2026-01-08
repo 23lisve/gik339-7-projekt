@@ -7,7 +7,7 @@ function nextId() {
 }
 
 const sqlite = require("sqlite3").verbose();
-const db = new sqlite.Database("./gik339.db"); //sökvägen till vår databas
+const db = new sqlite.Database("./flowers.sql"); //sökvägen till vår databas
 
 const express = require("express");
 const server = express();

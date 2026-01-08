@@ -33,7 +33,9 @@ server.listen(3000, () => {
 
 //hämtar alla
 server.get("/flowers", (req, res) => {
-  const sql = "SELECT * FROM flowers";
+  const id = req.params.id;
+
+  const sql = `SELECT * FROM flowers WHERE id = ${id}`;
   // errorhantering, callbackfunktion
 
   db.all(sql, (err, rows) => {

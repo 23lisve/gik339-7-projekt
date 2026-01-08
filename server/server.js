@@ -53,12 +53,36 @@ server.put("/flowers", (req, res) => {
     name: bodyData.name,
     color: bodyData.color,
     width: bodyData.width,
-    leafShape: bodyData.leafShape,
+    petalShape: bodyData.petalShape,
   };
 });
 
 //skapar
-server.post;
+server.post("/flowers", (req, res) => {
+  const flower = req.body;
+  const sql = `INSERT INTO flowers(name, color, width, petalShape) VALUES
+  (?,?,?,?)`;
+
+  db.run(sql, Object.values(flower), (err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    } else res.send("Användaren sparades");
+  });
+});
 
 //ta bort med id
-server.delete;
+// ((se över ifall det är id 100%))
+server.delete("/flowers", (req, res) => {
+  const id = req.params.id;
+  const sql = `DELETE FROM flowers WHERE id = ${id}`;
+
+  db.run(sql, (err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    } else {
+      res.send("Användaren borttagen");
+    }
+  });
+});

@@ -47,17 +47,60 @@ server.get("/flowers", (req, res) => {
 
 //updaterar
 server.put("/flowers", (req, res) => {
+  const bodyData = req.body;
+
   const id = bodyData.id;
   const flower = {
     name: bodyData.name,
     color: bodyData.color,
     width: bodyData.width,
-    petalShape: bodyData.leafShape,
+    petalShape: bodyData.petalShape,
   };
+
+  let updateString = "";
+  const columnsArray = Object.keys(flower);
+  columnsArray.forEach((column, i) => {
+    updateString += `${column}="${flower[column]}"`;
+    if (i !== columnsArray.lenght - 1) updateString += ",";
+  });
+  const sql = `UPDATE flowers SET ${updateString} WHERE id=${id}`;
+
+  db.run(sql, (err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    } else {
+      res.send("Blomman uppdaterades");
+    }
+  });
 });
 
 //skapar
-server.post;
+server.post("/flowers", (req, res) => {
+  const flower = req.body;
+  const sql = `INSERT INTO flowers(name, color, width, petalShape) VALUES
+  (?,?,?,?)`;
+
+  db.run(sql, Object.values(flower), (err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    } else res.send("Blomman sparades");
+  });
+});
 
 //ta bort med id
-server.delete;
+// ((se över ifall det är id 100%))
+server.delete("/flowers", (req, res) => {
+  const id = req.params.id;
+  const sql = `DELETE FROM flowers WHERE id = ${id}`;
+
+  db.run(sql, (err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    } else {
+      res.send("Blomman är borttagen");
+    }
+  });
+});

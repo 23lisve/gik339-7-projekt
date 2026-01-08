@@ -1,6 +1,6 @@
-const url = 'http://localhost:3000/users';
+const url = "http://localhost:3000/users";
 
-window.addEventListener('load', fetchData);
+window.addEventListener("load", fetchData);
 
 function fetchData() {
   fetch(url)
@@ -27,15 +27,15 @@ function fetchData() {
         });
         html += `</ul>`;
 
-        const listContainer = document.getElementById('listContainer');
-        listContainer.innerHTML = '';
-        listContainer.insertAdjacentHTML('beforeend', html);
+        const listContainer = document.getElementById("listContainer");
+        listContainer.innerHTML = "";
+        listContainer.insertAdjacentHTML("beforeend", html);
       }
     });
 }
 
 function setCurrentUser(id) {
-  console.log('current', id);
+  console.log("current", id);
 
   fetch(`${url}/${id}`)
     .then((result) => result.json())
@@ -46,47 +46,47 @@ function setCurrentUser(id) {
       userForm.color.value = user.color;
       userForm.username.value = user.username;
 
-      localStorage.setItem('currentId', user.id);
+      localStorage.setItem("currentId", user.id);
     });
 }
 
 function deleteUser(id) {
-  console.log('delete', id);
-  fetch(`${url}/${id}`, { method: 'DELETE' }).then((result) => fetchData());
+  console.log("delete", id);
+  fetch(`${url}/${id}`, { method: "DELETE" }).then((result) => fetchData());
 }
 
-userForm.addEventListener('submit', handleSubmit);
+userForm.addEventListener("submit", handleSubmit);
 
 function handleSubmit(e) {
   e.preventDefault();
   const serverUserObject = {
-    firstName: '',
-    lastName: '',
-    username: '',
-    color: ''
+    firstName: "",
+    lastName: "",
+    username: "",
+    color: "",
   };
   serverUserObject.firstName = userForm.firstName.value;
   serverUserObject.lastName = userForm.lastName.value;
   serverUserObject.username = userForm.username.value;
   serverUserObject.color = userForm.color.value;
 
-  const id = localStorage.getItem('currentId');
+  const id = localStorage.getItem("currentId");
   if (id) {
     serverUserObject.id = id;
   }
 
   const request = new Request(url, {
-    method: serverUserObject.id ? 'PUT' : 'POST',
+    method: serverUserObject.id ? "PUT" : "POST",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json",
     },
-    body: JSON.stringify(serverUserObject)
+    body: JSON.stringify(serverUserObject),
   });
 
   fetch(request).then((response) => {
     fetchData();
 
-    localStorage.removeItem('currentId');
+    localStorage.removeItem("currentId");
     userForm.reset();
   });
 }

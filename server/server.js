@@ -67,7 +67,7 @@ server.post("/flowers", (req, res) => {
     if (err) {
       console.log(err);
       res.status(500).send(err);
-    } else res.send("Användaren sparades");
+    } else res.send("Blomman sparades");
   });
 });
 
@@ -82,7 +82,7 @@ server.delete("/flowers", (req, res) => {
       console.log(err);
       res.status(500).send(err);
     } else {
-      res.send("Användaren borttagen");
+      res.send("Blomman är borttagen");
     }
   });
 });

@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS flowers(
   ,color     VARCHAR(6) NOT NULL
 );
 
-INSERT INTO flowers(id,name,petalshape,width,color) VALUES (1,'Zena','Zulauf','Katlynn_Brekke','green');
+INSERT INTO flowers(id,name,petalShape,width,color) VALUES (1,'Zena','Zulauf','Katlynn_Brekke','green');
 
 /*
 INSERT INTO users(id,firstName,lastName,username,color) VALUES (2,'Muhammad','Torphy','Martina39','gray');

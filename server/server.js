@@ -32,7 +32,7 @@ server.listen(3000, () => {
 });
 
 //hämtar alla
-server.get("/flowers", (req, res) => {
+server.get("/flowers/:id", (req, res) => {
   const id = req.params.id;
 
   const sql = `SELECT * FROM flowers WHERE id = ${id}`;
@@ -63,7 +63,7 @@ server.put("/flowers", (req, res) => {
   const columnsArray = Object.keys(flower);
   columnsArray.forEach((column, i) => {
     updateString += `${column}="${flower[column]}"`;
-    if (i !== columnsArray.lenght - 1) updateString += ",";
+    if (i !== columnsArray.length - 1) updateString += ",";
   });
   const sql = `UPDATE flowers SET ${updateString} WHERE id=${id}`;
 
@@ -93,7 +93,7 @@ server.post("/flowers", (req, res) => {
 
 //ta bort med id
 // ((se över ifall det är id 100%))
-server.delete("/flowers", (req, res) => {
+server.delete("/flowers/:id", (req, res) => {
   const id = req.params.id;
   const sql = `DELETE FROM flowers WHERE id = ${id}`;
 

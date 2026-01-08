@@ -48,6 +48,8 @@ server.get("/flowers", (req, res) => {
 
 //updaterar
 server.put("/flowers", (req, res) => {
+  const bodyData = req.body;
+
   const id = bodyData.id;
   const flower = {
     name: bodyData.name,
@@ -55,6 +57,23 @@ server.put("/flowers", (req, res) => {
     width: bodyData.width,
     petalShape: bodyData.petalShape,
   };
+
+  let updateString = "";
+  const columnsArray = Object.keys(flower);
+  columnsArray.forEach((column, i) => {
+    updateString += `${column}="${flower[column]}"`;
+    if (i !== columnsArray.lenght - 1) updateString += ",";
+  });
+  const sql = `UPDATE flowers SET ${updateString} WHERE id=${id}`;
+
+  db.run(sql, (err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    } else {
+      res.send("Blomman uppdaterades");
+    }
+  });
 });
 
 //skapar

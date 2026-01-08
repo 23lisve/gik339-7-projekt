@@ -53,7 +53,7 @@ server.put("/flowers", (req, res) => {
     name: bodyData.name,
     color: bodyData.color,
     width: bodyData.width,
-    leafShape: bodyData.leafShape,
+    petalShape: bodyData.leafShape,
   };
 });
 

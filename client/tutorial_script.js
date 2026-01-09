@@ -34,6 +34,7 @@ function fetchData() {
     });
 }
 
+
 function setCurrentUser(id) {
   console.log("current", id);
 

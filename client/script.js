@@ -1,13 +1,11 @@
 // varabel som lagrar vår adress
 const url = "http://localhost:3000/flowers";
 
-
 fetch(url)
   .then((result) => result.json())
   .then((flowers) => {
     console.log(flowers);
   });
-
 
 window.addEventListener("load", fetchData);
 

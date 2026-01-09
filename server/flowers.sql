@@ -9,13 +9,17 @@ CREATE TABLE IF NOT EXISTS flowers(
 );
 
 INSERT INTO flowers(id,name,petalShape,width,color) 
-VALUES (1,'Zena','Zulauf',2,'lila'); 
-
+VALUES (1,'Zena','Zulauf',2,'lila'), 
 INSERT INTO flowers(id,name,petalShape,width,color) 
-VALUES (2,'Dahlia','Runda',2,'rosa');
+VALUES (2,'Dahlia','Runda',2,'rosa'),
+INSERT INTO flowers(id,name,petalShape,width,color) 
+VALUES (3,'Tulpan','Koppad','5','orange'),
+INSERT INTO flowers(id,name,petalShape,width,color) 
+VALUES (4,'Vallmo','Bågad','7','röd'),
+INSERT INTO flowers(id,name,petalShape,width,color) 
+VALUES (5,'Solros','Triangulära','10','gul');
 
 /*
-INSERT INTO users(id,firstName,lastName,username,color) VALUES (2,'Muhammad','Torphy','Martina39','gray');
 INSERT INTO users(id,firstName,lastName,username,color) VALUES (3,'Carlee','Tromp','Carmen37','purple');
 INSERT INTO users(id,firstName,lastName,username,color) VALUES (4,'Taylor','Shanahan','Doyle_Legros81','red');
 INSERT INTO users(id,firstName,lastName,username,color) VALUES (5,'Estell','Reichel','Santiago.Dibbert','red');

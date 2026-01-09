@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS flowers(
 );
 
 INSERT INTO flowers(id,name,petalshape,width,color) VALUES (1,'Zena','Zulauf','Katlynn_Brekke','green'); 
+
 INSERT INTO flowers(id,name,petalShape,width,color) VALUES (1,'Dahlia','Runda','2','Pink');
 
 /*

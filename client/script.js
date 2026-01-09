@@ -2,14 +2,12 @@
 const url = "http://localhost:3000/flowers";
 
 
-// fetch använder promise
-// den är asynkron och måste därför invänta svaret för att köra funktionen
-// den rådata som hämtas måste översättas till json, vi har en array av flowers
 fetch(url)
   .then((result) => result.json())
   .then((flowers) => {
     console.log(flowers);
   });
+
 
 window.addEventListener("load", fetchData);
 

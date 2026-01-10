@@ -92,7 +92,7 @@ server.put("/flowers", (req, res) => {
 });
 
 //skapar
-server.post("/flowers", (req, res) => {
+/*server.post("/flowers", (req, res) => {
   const flower = req.body;
   const sql = `INSERT INTO flowers(name, color, width, petalShape) VALUES
   (?,?,?,?)`;
@@ -102,6 +102,16 @@ server.post("/flowers", (req, res) => {
       console.log(err);
       res.status(500).send(err);
     } else res.send("Blomman sparades");
+  });
+});*/
+
+server.post("/flowers", (req, res) => {
+  const { name, color, width, petalShape } = req.body;
+  const sql = `INSERT INTO flowers(name, color, width, petalShape) VALUES
+  (?,?,?,?)`;
+  db.run(sql, [name, color, width, petalShape], (err) => {
+    if (err) return res.status(500).send(err);
+    else res.send("Blomman sparades");
   });
 });
 

@@ -19,7 +19,6 @@ function fetchData() {
     röd: "bg-red-200 text-red-900 border-red-400",
     gul: "bg-yellow-200 text-yellow-900 border-yellow-400",
   };
-
   // fetch använder promise
   // den är synkron och måste därför invänta svaret för att köra funktionen
   // den rådata som hämtas måste översättas till json

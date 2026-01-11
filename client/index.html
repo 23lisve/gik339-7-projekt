@@ -18,35 +18,39 @@
       <div class="w-[55rem] mx-auto mt-8 bg-white/25 p-3 rounded-lg">
         <form id="userForm">
           <div class="form-control my-4 mx-auto flex w-3/4 items-center">
-            <label for="firstName" class="mr-4 text-xl w-40">Namn</label>
+            <label for="name" class="mr-4 text-xl w-40">Namn</label>
             <input
               class="text-slate-800 p-1 flex-1 rounded-md"
               type="text"
-              name="firstName"
+              id="name"
+              name="name"
             />
           </div>
           <div class="form-control my-4 mx-auto flex w-3/4 items-center">
-            <label for="lastName" class="mr-4 text-xl w-40"
+            <label for="petalShape" class="mr-4 text-xl w-40"
               >Form på bladen</label
             >
             <input
               class="text-slate-800 p-1 flex-1 rounded-md"
               type="text"
-              name="lastName"
+              id="petalShape"
+              name="petalShape"
             />
           </div>
           <div class="form-control my-4 mx-auto flex w-3/4 items-center">
-            <label for="username" class="mr-4 text-xl w-40">Bredd</label>
+            <label for="width" class="mr-4 text-xl w-40">Bredd</label>
             <input
               class="text-slate-800 p-1 flex-1 rounded-md"
               type="text"
-              name="username"
+              id="width"
+              name="width"
             />
           </div>
           <div class="form-control my-4 mx-auto flex w-3/4 items-center">
             <label for="color" class="mr-4 text-xl w-40">Färg</label>
             <select
               class="bg-white text-slate-800 p-1 flex-1 rounded-md"
+              id="color"
               name="color"
             >
               <option value="lila">Lila</option>
@@ -83,14 +87,17 @@
           >
             <h3>name petalShape</h3>
             <p>Bredd:</p>
+
             <div class="rounded-md bg-white/50 p-1 text-sm">
               <button
-                class="border border-green-300 hover:bg-white/100 rounded-md bg-white/50 p-1 text-sm mt-2"
+                class="updateButton border border-green-300 hover:bg-white/100 rounded-md bg-white/50 p-1 text-sm mt-2"
+                data-id="ID_HÄR"
               >
-                Ändra
+                uppdatera
               </button>
               <button
-                class="border border-green-300 hover:bg-white/100 rounded-md bg-white/50 p-1 text-sm mt-2"
+                class="deleteButton border border-green-300 hover:bg-white/100 rounded-md bg-white/50 p-1 text-sm mt-2"
+                data-id="ID_HÄR"
               >
                 Ta bort
               </button>

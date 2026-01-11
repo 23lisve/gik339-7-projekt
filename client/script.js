@@ -44,11 +44,15 @@ function fetchData() {
 
 
               <div class="rounded-md bg-white/50 p-1 text-sm">
-                <button class= "border border-gray-300 rounded-md bg-white/50 p-1 text-sm mt-2">
+                <button class= "updateButton border border-gray-300 rounded-md bg-white/50 p-1 text-sm mt-2"
+                data-id="${flower.id}">
+                
                
-                  Ändra
+                  uppdatera
+
                 </button>
-                <button class="border border-gray-300 rounded-md bg-white/50 p-1 text-sm mt-2">
+                <button class="deleteButton border border-gray-300 rounded-md bg-white/50 p-1 text-sm mt-2"
+                data-id="${flower.id}">
                   Ta bort
                 </button>
               </div>
@@ -69,9 +73,9 @@ userForm.addEventListener("submit", handleSubmit);
 function handleSubmit(e) {
   e.preventDefault();
   const flower = {
-    name: userForm.firstName.value,
-    petalShape: userForm.lastName.value,
-    width: userForm.username.value,
+    name: userForm.name.value,
+    petalShape: userForm.petalShape.value,
+    width: userForm.width.value,
     color: userForm.color.value,
   };
   //serverUserObject.firstName = userForm.firstName.value;
@@ -96,3 +100,27 @@ function handleSubmit(e) {
 
   //console.log(e);
 }
+
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("button");
+  if (!btn) return;
+
+  if (btn.classList.contains("updateButton")) {
+    fetch(url, {
+      method: "PUT",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        id: btn.dataset.id,
+        name: userForm.name.value,
+        petalShape: userForm.petalShape.value,
+        width: userForm.width.value,
+        color: userForm.color.value,
+      }),
+    }).then(() => fetchData());
+  }
+  if (btn.classList.contains("deleteButton")) {
+    fetch(`${url}/${btn.dataset.id}`, { method: "DELETE" }).then(() =>
+      fetchData()
+    );
+  }
+});

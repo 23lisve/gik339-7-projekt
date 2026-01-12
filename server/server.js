@@ -1,11 +1,5 @@
 //det första vi gör när vi öppnar server är att skriva npm start(är kopplat till nodemon server.js i package.json)
 
-// Hjälpare för id-generering
-function nextId() {
-  const n = tasks.length + 1;
-  return String(n).padStart(3, "0");
-}
-
 const sqlite = require("sqlite3").verbose();
 const db = new sqlite.Database("./gik339.db"); //sökvägen till vår databas
 

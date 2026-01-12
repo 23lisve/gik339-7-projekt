@@ -64,7 +64,7 @@ server.get("/flowers/:id", (req, res) => {
 });
 
 //updaterar
-server.put("/flowers/:id", (req, res) => {
+server.put("/flowers", (req, res) => {
   const bodyData = req.body;
 
   const id = bodyData.id;

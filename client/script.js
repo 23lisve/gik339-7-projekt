@@ -95,8 +95,8 @@ function handleSubmit(e) {
 }
 
 document.addEventListener("click", (e) => {
-  const button = e.target.closest("button");
-  if (!button) return;
+  const btn = e.target.closest("button");
+  if (!btn) return;
 
   if (btn.classList.contains("updateFormButton")) {
     fetch(url, {

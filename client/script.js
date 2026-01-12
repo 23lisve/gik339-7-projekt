@@ -102,15 +102,15 @@ function handleSubmit(e) {
 }
 
 document.addEventListener("click", (e) => {
-  const btn = e.target.closest("button");
-  if (!btn) return;
+  const button = e.target.closest("button");
+  if (!button) return;
 
-  if (btn.classList.contains("updateButton")) {
+  if (button.classList.contains("updateButton")) {
     fetch(url, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
-        id: btn.dataset.id,
+        id: button.dataset.id,
         name: userForm.name.value,
         petalShape: userForm.petalShape.value,
         width: userForm.width.value,
@@ -118,8 +118,8 @@ document.addEventListener("click", (e) => {
       }),
     }).then(() => fetchData());
   }
-  if (btn.classList.contains("deleteButton")) {
-    fetch(`${url}/${btn.dataset.id}`, { method: "DELETE" }).then(() =>
+  if (button.classList.contains("deleteButton")) {
+    fetch(`${url}/${button.dataset.id}`, { method: "DELETE" }).then(() =>
       fetchData()
     );
   }

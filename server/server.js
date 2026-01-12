@@ -56,6 +56,8 @@ server.get("/flowers/:id", (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
+      console.log("kom hit");
+      console.log(rows[0]);
       res.send(rows[0]);
     }
   });

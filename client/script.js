@@ -1,6 +1,5 @@
 // varabel som lagrar vår adress
 const url = "http://localhost:3000/flowers";
-
 const userForm = document.getElementById("userForm");
 
 fetch(url)
@@ -71,6 +70,7 @@ console.log(userForm);
 userForm.addEventListener("submit", handleSubmit);
 
 function handleSubmit(e) {
+  console.log("form submitted");
   e.preventDefault();
   const flower = {
     name: userForm.name.value,
@@ -78,12 +78,7 @@ function handleSubmit(e) {
     width: userForm.width.value,
     color: userForm.color.value,
   };
-  //serverUserObject.firstName = userForm.firstName.value;
-  //serverUserObject.lastName = userForm.lastName.value;
-  //serverUserObject.username = userForm.username.value;
-  //serverUserObject.color = userForm.color.value;
 
-  //console.log(serverUserObject);
   const request = new Request(url, {
     method: "POST",
     headers: {
@@ -97,27 +92,41 @@ function handleSubmit(e) {
     fetchData();
     userForm.reset();
   });
-
-  //console.log(e);
 }
 
 document.addEventListener("click", (e) => {
   const btn = e.target.closest("button");
   if (!btn) return;
 
-  if (btn.classList.contains("updateButton")) {
+  if (btn.classList.contains("updateFormButton")) {
     fetch(url, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
-        id: btn.dataset.id,
+        id: localStorage.getItem("updateId"),
         name: userForm.name.value,
         petalShape: userForm.petalShape.value,
         width: userForm.width.value,
         color: userForm.color.value,
       }),
-    }).then(() => fetchData());
+    }).then(() => {
+      fetchData();
+    });
   }
+
+  if (btn.classList.contains("updateButton")) {
+    fetch(`${url}/${btn.dataset.id}`, { method: "GET" })
+      .then((result) => result.json())
+      .then((flower) => {
+        userForm.name.value = flower.name;
+        userForm.petalShape.value = flower.petalShape;
+        userForm.width.value = flower.width;
+        userForm.color.value = flower.color;
+        localStorage.setItem("updateId", btn.dataset.id);
+        fetchData();
+      });
+  }
+
   if (btn.classList.contains("deleteButton")) {
     fetch(`${url}/${btn.dataset.id}`, { method: "DELETE" }).then(() =>
       fetchData()

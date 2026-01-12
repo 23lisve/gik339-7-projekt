@@ -75,36 +75,18 @@
               type="submit"
               name="submitUserForm"
             >
-              Skicka
+              Lägg till
+            </button>
+            <button
+              class="updateFormButton px-4 py-1 bg-slate-200 text-slate-800 rounded-md hover:bg-slate-300"
+              type="button"
+            >
+              Updatera
             </button>
           </div>
         </form>
       </div>
-      <div id="listContainer">
-        <ul class="w-3/4 my-3 mx-auto flex flex-wrap gap-2 justify-center">
-          <li
-            class="bg-green-200 basis-1/4 text-green-900 p-2 rounded-md border-2 border-green-400 flex flex-col justify-between"
-          >
-            <h3>name petalShape</h3>
-            <p>Bredd:</p>
-
-            <div class="rounded-md bg-white/50 p-1 text-sm">
-              <button
-                class="updateButton border border-green-300 hover:bg-white/100 rounded-md bg-white/50 p-1 text-sm mt-2"
-                data-id="ID"
-              >
-                uppdatera
-              </button>
-              <button
-                class="deleteButton border border-green-300 hover:bg-white/100 rounded-md bg-white/50 p-1 text-sm mt-2"
-                data-id="ID"
-              >
-                Ta bort
-              </button>
-            </div>
-          </li>
-        </ul>
-      </div>
+      <div id="listContainer"></div>
     </main>
 
     <script src="script.js"></script>

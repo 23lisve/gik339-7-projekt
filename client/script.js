@@ -25,9 +25,10 @@ function fetchData() {
   fetch(url)
     .then((result) => result.json())
     .then((flowers) => {
-      /*console.log(flowers);*/
+      console.log(flowers);
+      let html = "";
       if (flowers.length > 0) {
-        let html = `<ul class = "w-3/4 my-3 mx-auto flex flex-wrap gap-2 justify-center">`;
+        html = `<ul class = "w-3/4 my-3 mx-auto flex flex-wrap gap-2 justify-center">`;
 
         flowers.forEach((flower) => {
           html += `
@@ -43,26 +44,27 @@ function fetchData() {
 
 
               <div class="rounded-md bg-white/50 p-1 text-sm">
-                <button class= "updateButton border border-gray-300 rounded-md bg-white/50 p-1 text-sm mt-2"
-                data-id="${flower.id}">
+                <button class= "updateButton border border-gray-300 rounded-md bg-white/50 p-1 text-sm mt-2" onclick="setFormById(${
+                  flower.id
+                })">
                 
                
                   uppdatera
 
                 </button>
-                <button class="deleteButton border border-gray-300 rounded-md bg-white/50 p-1 text-sm mt-2"
-                data-id="${flower.id}">
+                <button class="deleteButton border border-gray-300 rounded-md bg-white/50 p-1 text-sm mt-2" onclick="deleteFlower(${
+                  flower.id
+                })">
                   Ta bort
                 </button>
               </div>
             </li>`;
         });
         html += "</ul>";
-
-        const listContainer = document.getElementById("listContainer");
-        listContainer.innerHTML = "";
-        listContainer.insertAdjacentHTML("beforeend", html);
       }
+      const listContainer = document.getElementById("listContainer");
+      listContainer.innerHTML = "";
+      listContainer.insertAdjacentHTML("beforeend", html);
     });
 }
 
@@ -87,11 +89,13 @@ function handleSubmit(e) {
     body: JSON.stringify(flower),
   });
 
-  fetch(request).then((response) => {
-    console.log(response);
-    fetchData();
-    userForm.reset();
-  });
+  fetch(request)
+    .then((result) => result.text())
+    .then((message) => {
+      fetchData();
+      alert(message);
+      userForm.reset();
+    });
 }
 
 document.addEventListener("click", (e) => {
@@ -109,27 +113,36 @@ document.addEventListener("click", (e) => {
         width: userForm.width.value,
         color: userForm.color.value,
       }),
-    }).then(() => {
-      fetchData();
-    });
-  }
-
-  if (btn.classList.contains("updateButton")) {
-    fetch(`${url}/${btn.dataset.id}`, { method: "GET" })
-      .then((result) => result.json())
-      .then((flower) => {
-        userForm.name.value = flower.name;
-        userForm.petalShape.value = flower.petalShape;
-        userForm.width.value = flower.width;
-        userForm.color.value = flower.color;
-        localStorage.setItem("updateId", btn.dataset.id);
+    })
+      .then((result) => result.text())
+      .then((message) => {
         fetchData();
+        alert(message);
+        userForm.reset();
       });
   }
-
-  if (btn.classList.contains("deleteButton")) {
-    fetch(`${url}/${btn.dataset.id}`, { method: "DELETE" }).then(() =>
-      fetchData()
-    );
-  }
 });
+
+function setFormById(id) {
+  fetch(`${url}/${id}`, { method: "GET" })
+    .then((result) => result.json())
+    .then((flower) => {
+      userForm.name.value = flower.name;
+      userForm.petalShape.value = flower.petalShape;
+      userForm.width.value = flower.width;
+      userForm.color.value = flower.color;
+      localStorage.setItem("updateId", flower.id);
+      fetchData();
+    });
+}
+
+function deleteFlower(id) {
+  console.log("delete", id);
+  fetch(`${url}/${id}`, { method: "DELETE" })
+    .then((result) => result.text())
+    .then((message) => {
+      fetchData();
+      console.log(message);
+      alert(message);
+    });
+}

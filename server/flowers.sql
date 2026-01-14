@@ -1,3 +1,5 @@
+-- SQLite
+-- SQLite
 DROP TABLE IF EXISTS flowers; --Tar bort 
 CREATE TABLE IF NOT EXISTS flowers(
   id          INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -9,15 +11,15 @@ CREATE TABLE IF NOT EXISTS flowers(
 );
 
 INSERT INTO flowers(id,name,petalShape,width,color) 
-VALUES (1,'Zena','Zulauf',2,'lila'), 
+VALUES (1,'Zena','Zulauf',2,'lila'); 
 INSERT INTO flowers(id,name,petalShape,width,color) 
-VALUES (2,'Dahlia','Runda',2,'rosa'),
+VALUES (2,'Dahlia','Runda',2,'rosa');
 INSERT INTO flowers(id,name,petalShape,width,color) 
-VALUES (3,'Tulpan','Koppad','5','orange'),
+VALUES (3,'Tulpan','Koppad',5,'orange');
 INSERT INTO flowers(id,name,petalShape,width,color) 
-VALUES (4,'Vallmo','Bågad','7','röd'),
+VALUES (4,'Vallmo','Bågad',7,'röd');
 INSERT INTO flowers(id,name,petalShape,width,color) 
-VALUES (5,'Solros','Triangulära','10','gul');
+VALUES (5,'Solros','Triangulära',10,'gul');
 
 /*
 INSERT INTO users(id,firstName,lastName,username,color) VALUES (3,'Carlee','Tromp','Carmen37','purple');

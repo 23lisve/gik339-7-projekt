@@ -1,6 +1,6 @@
 // varabel som lagrar vår adress
 const url = "http://localhost:3000/flowers";
-const userForm = document.getElementById("userForm");
+const flowerForm = document.getElementById("flowerForm");
 
 fetch(url)
   .then((result) => result.json())
@@ -68,17 +68,17 @@ function fetchData() {
     });
 }
 
-console.log(userForm);
-userForm.addEventListener("submit", handleSubmit);
+console.log(flowerForm);
+flowerForm.addEventListener("submit", handleSubmit);
 
 function handleSubmit(e) {
   console.log("form submitted");
   e.preventDefault();
   const flower = {
-    name: userForm.name.value,
-    petalShape: userForm.petalShape.value,
-    width: userForm.width.value,
-    color: userForm.color.value,
+    name: flowerForm.name.value,
+    petalShape: flowerForm.petalShape.value,
+    width: flowerForm.width.value,
+    color: flowerForm.color.value,
   };
 
   const request = new Request(url, {
@@ -94,7 +94,7 @@ function handleSubmit(e) {
     .then((message) => {
       fetchData();
       alert(message);
-      userForm.reset();
+      flowerForm.reset();
     });
 }
 
@@ -108,17 +108,17 @@ document.addEventListener("click", (e) => {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         id: localStorage.getItem("updateId"),
-        name: userForm.name.value,
-        petalShape: userForm.petalShape.value,
-        width: userForm.width.value,
-        color: userForm.color.value,
+        name: flowerForm.name.value,
+        petalShape: flowerForm.petalShape.value,
+        width: flowerForm.width.value,
+        color: flowerForm.color.value,
       }),
     })
       .then((result) => result.text())
       .then((message) => {
         fetchData();
         alert(message);
-        userForm.reset();
+        flowerForm.reset();
       });
   }
 });
@@ -127,10 +127,10 @@ function setFormById(id) {
   fetch(`${url}/${id}`, { method: "GET" })
     .then((result) => result.json())
     .then((flower) => {
-      userForm.name.value = flower.name;
-      userForm.petalShape.value = flower.petalShape;
-      userForm.width.value = flower.width;
-      userForm.color.value = flower.color;
+      flowerForm.name.value = flower.name;
+      flowerForm.petalShape.value = flower.petalShape;
+      flowerForm.width.value = flower.width;
+      flowerForm.color.value = flower.color;
       localStorage.setItem("updateId", flower.id);
       fetchData();
     });

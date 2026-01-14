@@ -121,16 +121,6 @@ server.post("/flowers", (req, res) => {
   });
 });
 
-/*server.post("/flowers", (req, res) => {
-  const { name, color, width, petalShape } = req.body;
-  const sql = `INSERT INTO flowers(name, color, width, petalShape) VALUES
-  (?,?,?,?)`;
-  db.run(sql, [name, color, width, petalShape], (err) => {
-    if (err) return res.status(500).send(err);
-    else res.send("Blomman är tillagd");
-  });
-});*/
-
 //ta bort med id
 // ((se över ifall det är id 100%))
 server.delete("/flowers/:id", (req, res) => {

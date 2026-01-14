@@ -4,8 +4,8 @@ DROP TABLE IF EXISTS flowers; --Tar bort
 CREATE TABLE IF NOT EXISTS flowers(
   id          INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 
-  name        VARCHAR(8) NOT NULL,
-  petalShape  VARCHAR(9) NOT NULL,
+  name        VARCHAR(15) NOT NULL,
+  petalShape  VARCHAR(15) NOT NULL,
   width       INTEGER NOT NULL,
   color       VARCHAR(6) NOT NULL
 );

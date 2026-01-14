@@ -89,13 +89,47 @@ server.put("/flowers", (req, res) => {
 
 server.post("/flowers", (req, res) => {
   const { name, color, width, petalShape } = req.body;
+  if (name.length > 15) {
+    return res.status(400).json({
+      error: "Valideringsfel",
+      message: "Max 15 tecken",
+    });
+  }
+  if (petalShape.length > 15) {
+    return res.status(400).json({
+      error: "Valideringsfel",
+      message: "Max 15 tecken",
+    });
+  }
+  if (!Number.isInteger(Number(width))) {
+    return res.status(400).json({
+      error: "Valideringsfel",
+      message: "Bredd måste vara ett heltal, endast siffror",
+    });
+  }
+  if (Number(width) <= 0) {
+    return res.status(400).json({
+      error: "Valideringsfel",
+      message: "Bredd måste vara större än 0, endast siffror",
+    });
+  }
+  const sql =
+    "INSERT INTO flowers(name, color, width, petalShape) VALUES (?,?,?,?);";
+  db.run(sql, [name, color, width, petalShape], (err) => {
+    if (err) return res.status(500).send(err);
+    else res.send("Blomman sparades");
+  });
+});
+
+/*server.post("/flowers", (req, res) => {
+  const { name, color, width, petalShape } = req.body;
   const sql = `INSERT INTO flowers(name, color, width, petalShape) VALUES
   (?,?,?,?)`;
   db.run(sql, [name, color, width, petalShape], (err) => {
     if (err) return res.status(500).send(err);
     else res.send("Blomman är tillagd");
   });
-});
+});*/
 
 //ta bort med id
 // ((se över ifall det är id 100%))

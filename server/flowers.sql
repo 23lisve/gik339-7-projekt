@@ -11,11 +11,11 @@ CREATE TABLE IF NOT EXISTS flowers(
 );
 
 INSERT INTO flowers(id,name,petalShape,width,color) 
-VALUES (1,'Zena','Zulauf',2,'lila'); 
+VALUES (1,'Lilja','Kantig',10,'lila'); 
 INSERT INTO flowers(id,name,petalShape,width,color) 
-VALUES (2,'Dahlia','Runda',2,'rosa');
+VALUES (2,'Dahlia','Runda',2,'orange');
 INSERT INTO flowers(id,name,petalShape,width,color) 
-VALUES (3,'Tulpan','Koppad',5,'orange');
+VALUES (3,'Tulpan','Koppad',5,'rosa');
 INSERT INTO flowers(id,name,petalShape,width,color) 
 VALUES (4,'Vallmo','Bågad',7,'röd');
 INSERT INTO flowers(id,name,petalShape,width,color) 

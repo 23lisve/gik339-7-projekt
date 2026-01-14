@@ -93,7 +93,7 @@ server.post("/flowers", (req, res) => {
   (?,?,?,?)`;
   db.run(sql, [name, color, width, petalShape], (err) => {
     if (err) return res.status(500).send(err);
-    else res.send("Blomman sparades");
+    else res.send("Blomman är tillagd");
   });
 });
 
